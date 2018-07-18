@@ -1,0 +1,23 @@
+h2.new-tweet {
+  border-bottom: 1px solid black;
+}
+
+section.new-tweet {
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color:#bfc2ca40;
+}
+
+#new-tweet {
+  width: 100%;
+  padding: 10px;
+}
+
+input.new-tweet {
+  float: left;
+}
+
+span.counter {
+  float: right;
+}
