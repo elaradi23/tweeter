@@ -6,7 +6,7 @@
 
  $(document).ready(function () {
 
-  //
+  // Set's the new-tweet section to
   $(".new-tweet").slideToggle(0);
 
   //
@@ -25,6 +25,7 @@
       $.post("/tweets/", content, function(data, status){
         $('textarea').val('');
         $('#error').text('');
+        $('.counter').text(140);
         loadTweets();
       });
     }
