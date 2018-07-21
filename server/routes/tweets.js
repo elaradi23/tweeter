@@ -44,13 +44,12 @@ module.exports = function(DataHelpers) {
 
   tweetsRoutes.get("/like", function(req, res){
     console.log(req.method + ":" + req.path);
-    console.log(res.status);
   });
 
   tweetsRoutes.post("/like", function(req, res){
-    console.log('Test 1');
+    console.log(req.method + ":" + req.path);
+    res.send('something');
   });
 
   return tweetsRoutes;
-
 }

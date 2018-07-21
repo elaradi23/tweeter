@@ -10,10 +10,10 @@
   // Set's the new-tweet section to
   $(".new-tweet").slideToggle(0);
 
-  //
+  // Initially load all tweets existing in our tweets database:
   loadTweets()
 
-  //
+  // Handles submition of new tweet
   $("#submit").on('click', function(event) {
     event.preventDefault();
     let content = $('form').serialize();
@@ -32,7 +32,7 @@
     }
   });
 
-  //
+  // Handles loading of all tweets in database:
   function loadTweets() {
     $.ajax({
       url: '/tweets',
@@ -43,7 +43,7 @@
     });
   }
 
-  //
+  // Handles the HTML buildup of a tweet artcle section
   function createTweetElement(tweet){
     //Make Header:
     let $header = $('<header>');
@@ -59,7 +59,7 @@
     let $footer = $('<footer>');
     let days = moment(tweet.created_at).fromNow();
     let date = $('<div>').addClass('date').text(days);
-    let likes = $('<div>').addClass('likes').text('#');
+    let likes = $('<div>').addClass('likes').text('');
     let $icons = $('<div>').addClass('icons');
     let iconFlag = $('<span>').addClass("fas fa-flag").attr('style','padding: 5px;');
     let iconRetweet = $('<span>').addClass("fas fa-retweet").attr('style','padding: 5px;');
@@ -68,12 +68,12 @@
     $footer.append(date).append(likes).append($icons);
 
     // Appending header, body, footer to article:
-    let $tweet = $('<article>').addClass('tweet');
+    let $tweet = $('<article>').addClass('tweet').attr('data-id', tweet._id);
     $tweet.append($header).append(content).append($footer);
     return $tweet;
   }
 
-  //
+  // Handles rendering all tweets together:
   function renderTweets(tweets){
     $('#tweets-container').empty();
     let $section = $('<section>').addClass('tweets-container');
@@ -84,39 +84,30 @@
     $('#tweets-container').append($section);
   }
 
+  // Toggles the new-tweet section using compose button
   $(".compose").click(function() {
     $(".new-tweet").slideToggle(100);
     $('textarea').focus();
   });
 
-  $(".test").on('click', function(event) {
+  // Handles the like segment of each tweet
+  $('#tweets-container').on('click', '.fas.fa-heart', function () {
     event.preventDefault();
-    let content = '';
-
-    console.log('TEST 1');
-
-    $.post("/tweets/like", content, function(data, status){
-      console.log('TEST 2');
+    var thisTweet = $(this);
+    $.post("/tweets/like", thisTweet, function(data, status){
+      console.log(thisTweet[0]);
+      ToggleLike(thisTweet);
     });
   });
 
-  // $('#tweets-container').on('click', '.fas.fa-heart', function () {
-  //   event.preventDefault();
-  //   var thisTweet = $(this);
-  //   $.post("/tweets/like", thisTweet, function(data, status){
-  //     ToggleLike(thisTweet);
-  //     console.log('Test');
-  //   });
-
-  //   function ToggleLike(someTweet){
-  //   $.ajax({
-  //     url: '/tweets/like',
-  //     method: 'GET',
-  //     success: function () {
-  //       console.log('Test');;
-  //     }
-  //   });
-  //   }
-  // });
+  function ToggleLike(someTweet){
+    $.ajax({
+      url: '/tweets/like',
+      method: 'GET',
+      success: function () {
+        console.log('Test');
+      }
+    });
+  }
 });
 
