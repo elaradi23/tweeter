@@ -1,0 +1,52 @@
+@import "variables";
+
+article.tweet {
+  border: 1px solid grey;
+  border-radius: $default-radius;
+  margin: 20px auto;
+  &:hover{
+    border: 1px solid black;
+    header {
+      opacity: 1;
+    }
+    .icons {
+      visibility: visible;
+    }
+  }
+  header {
+    opacity: 0.5;
+    height: 70px;
+    background-color: $white-smoke;
+    padding: 10px;
+    .avatar {
+      float: left;
+    }
+    .username {
+      padding-left: 10px;
+      display: inline-block;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .usertag {
+      float: right;
+    }
+  }
+  .content {
+    padding: 10;
+    margin: 10px;
+  }
+  footer {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid grey;
+    padding: 10px;
+    .date {
+      float: left;
+    }
+    .icons {
+      visibility: hidden;
+      float: right;
+      color: $persian-green;
+    }
+  }
+}

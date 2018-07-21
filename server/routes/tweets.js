@@ -5,6 +5,7 @@ const userHelper    = require("../lib/util/user-helper")
 const express       = require('express');
 const tweetsRoutes  = express.Router();
 
+
 module.exports = function(DataHelpers) {
 
   tweetsRoutes.get("/", function(req, res) {
@@ -39,6 +40,15 @@ module.exports = function(DataHelpers) {
         res.status(201).send();
       }
     });
+  });
+
+  tweetsRoutes.get("/like", function(req, res){
+    console.log(req.method + ":" + req.path);
+    console.log(res.status);
+  });
+
+  tweetsRoutes.post("/like", function(req, res){
+    console.log('Test 1');
   });
 
   return tweetsRoutes;

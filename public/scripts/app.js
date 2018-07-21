@@ -6,6 +6,7 @@
 
  $(document).ready(function () {
 
+  moment().format();
   // Set's the new-tweet section to
   $(".new-tweet").slideToggle(0);
 
@@ -25,7 +26,7 @@
       $.post("/tweets/", content, function(data, status){
         $('textarea').val('');
         $('#error').text('');
-        $('.counter').text(140);
+        $('.counter').text(140); 
         loadTweets();
       });
     }
@@ -46,24 +47,25 @@
   function createTweetElement(tweet){
     //Make Header:
     let $header = $('<header>');
-    let userAvatar = $('<img>').attr('src', tweet.user.avatars.small);;
+    let userAvatar = $('<img>').addClass('avatar').attr('src', tweet.user.avatars.small);;
     let userName = $('<div>').addClass('username').text(tweet.user.name);
     let userHandle = $('<div>').addClass('usertag').text(tweet.user.handle);
-    $header.append(userAvatar).append(userName).append(tweet.user.handle);
+    $header.append(userAvatar).append(userName).append(userHandle);
 
     //Make Body:
     let content = $('<div>').addClass('content').text(tweet.content.text);
 
     //Make Footer:
     let $footer = $('<footer>');
-    var time = '10 days ago';
-    let date = $('<div>').addClass('date').text(time);
+    let days = moment(tweet.created_at).fromNow();
+    let date = $('<div>').addClass('date').text(days);
+    let likes = $('<div>').addClass('likes').text('#');
     let $icons = $('<div>').addClass('icons');
-    let iconFlag = $('<span>').addClass("fas fa-flag");
-    let iconRetweet = $('<span>').addClass("fas fa-retweet");
-    let iconRheart = $('<span>').addClass("fas fa-heart");
-    $icons.append(iconFlag).append(iconRetweet).append(iconRheart);
-    $footer.append(date).append($icons);
+    let iconFlag = $('<span>').addClass("fas fa-flag").attr('style','padding: 5px;');
+    let iconRetweet = $('<span>').addClass("fas fa-retweet").attr('style','padding: 5px;');
+    let iconHeart = $('<span>').addClass("fas fa-heart").attr('style','padding: 5px;');
+    $icons.append(iconFlag).append(iconRetweet).append(iconHeart);
+    $footer.append(date).append(likes).append($icons);
 
     // Appending header, body, footer to article:
     let $tweet = $('<article>').addClass('tweet');
@@ -79,14 +81,42 @@
       let _tweet = createTweetElement(user);
       $section.prepend(_tweet);
     }
-    console.log('RENDER');
     $('#tweets-container').append($section);
   }
 
-  //
   $(".compose").click(function() {
     $(".new-tweet").slideToggle(100);
     $('textarea').focus();
   });
+
+  $(".test").on('click', function(event) {
+    event.preventDefault();
+    let content = '';
+
+    console.log('TEST 1');
+
+    $.post("/tweets/like", content, function(data, status){
+      console.log('TEST 2');
+    });
+  });
+
+  // $('#tweets-container').on('click', '.fas.fa-heart', function () {
+  //   event.preventDefault();
+  //   var thisTweet = $(this);
+  //   $.post("/tweets/like", thisTweet, function(data, status){
+  //     ToggleLike(thisTweet);
+  //     console.log('Test');
+  //   });
+
+  //   function ToggleLike(someTweet){
+  //   $.ajax({
+  //     url: '/tweets/like',
+  //     method: 'GET',
+  //     success: function () {
+  //       console.log('Test');;
+  //     }
+  //   });
+  //   }
+  // });
 });
 

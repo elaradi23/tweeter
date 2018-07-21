@@ -1,8 +1,5 @@
-/*
- * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
- * https://css-tricks.com/international-box-sizing-awareness-day/
- * Do not modify these two selectors, please
- */
+@import "variables";
+
 html {
   box-sizing: border-box;
 }
@@ -17,8 +14,8 @@ html {
 body {
   margin: 0;
   color: #244751;
-  background-color: #eee;
-  font-family: 'Roboto Condensed', sans-serif;
+  background-color: $whisper;
+  font-family: $font-Roboto-Condensed;
 }
 
 /*
@@ -26,7 +23,7 @@ body {
  */
 
  main.container {
-  width: 450px;
+  width: $main-container-width;
   background-color: white;
   padding: 1em;
   margin: 0 auto;

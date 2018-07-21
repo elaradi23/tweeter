@@ -1,0 +1,154 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/*
+ * Global layout stuff
+ */
+body {
+  margin: 0;
+  color: #244751;
+  background-color: #eee;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+/*
+ * Additional CSS can be defined below or in other CSS files, as per instructions
+ */
+main.container {
+  width: 450px;
+  background-color: white;
+  padding: 1em;
+  margin: 0 auto;
+  margin-top: 80px;
+}
+
+#nav-bar {
+  background-color: #00a087;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 0 2em;
+  height: 80px;
+  color: #e8fdff;
+}
+
+#nav-bar .logo {
+  float: left;
+  height: 80px;
+  margin-right: 10px;
+}
+
+#nav-bar .header {
+  float: left;
+  font-size: 200%;
+  line-height: 2.45;
+}
+
+#nav-bar .compose {
+  float: right;
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 19px;
+  margin: 9px;
+  border-color: black;
+  color: #00a087;
+  filter: opacity(80%);
+}
+
+#nav-bar .compose:hover {
+  color: black;
+  filter: opacity(100%);
+  cursor: pointer;
+}
+
+article.tweet {
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin: 20px auto;
+}
+
+article.tweet:hover {
+  border: 1px solid black;
+}
+
+article.tweet:hover header {
+  opacity: 1;
+}
+
+article.tweet:hover .icons {
+  visibility: visible;
+}
+
+article.tweet header {
+  opacity: 0.5;
+  height: 70px;
+  background-color: #f3f3f3;
+  padding: 10px;
+}
+
+article.tweet header .avatar {
+  float: left;
+}
+
+article.tweet header .username {
+  padding-left: 10px;
+  display: inline-block;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+article.tweet header .usertag {
+  float: right;
+}
+
+article.tweet .content {
+  padding: 10;
+  margin: 10px;
+}
+
+article.tweet footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid grey;
+  padding: 10px;
+}
+
+article.tweet footer .date {
+  float: left;
+}
+
+article.tweet footer .icons {
+  visibility: hidden;
+  float: right;
+  color: #00a087;
+}
+
+h2.new-tweet {
+  border-bottom: 1px solid black;
+}
+
+section.new-tweet {
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: #eee;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+}
+
+input.new-tweet {
+  float: left;
+}
+
+span.counter {
+  float: right;
+}
